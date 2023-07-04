@@ -13,7 +13,7 @@ import { ProductRepository } from "../repository/user.repository";
 const repository = new ProductRepository();
 
 export default class ProductController {
-    async getAllProducts(_, res: Response) {
+    async getAllProducts(_: any, res: Response) {
         try {
             const data = await repository.getAllProducts();
 
@@ -24,7 +24,9 @@ export default class ProductController {
                     message: "",
                 })
             );
-        } catch (error) {
+        } catch (err) {
+            const error = err as Error;
+
             res.json(
                 new ApiResponseModel({
                     data: null,
@@ -47,7 +49,9 @@ export default class ProductController {
                     message: "",
                 })
             );
-        } catch (error) {
+        } catch (err) {
+            const error = err as Error;
+
             res.json(
                 new ApiResponseModel({
                     data: null,
@@ -73,7 +77,9 @@ export default class ProductController {
                     message: "",
                 })
             );
-        } catch (error) {
+        } catch (err) {
+            const error = err as Error;
+
             res.json(
                 new ApiResponseModel({
                     data: null,
@@ -101,7 +107,9 @@ export default class ProductController {
                     message: "",
                 })
             );
-        } catch (error) {
+        } catch (err) {
+            const error = err as Error;
+
             res.json(
                 new ApiResponseModel({
                     data: null,
@@ -123,7 +131,9 @@ export default class ProductController {
                     message: "Product created successfully",
                 })
             );
-        } catch (error) {
+        } catch (err) {
+            const error = err as Error;
+
             res.json(
                 new ApiResponseModel({
                     data: null,
@@ -146,7 +156,9 @@ export default class ProductController {
                     message: "Product deleted successfully",
                 })
             );
-        } catch (error) {
+        } catch (err) {
+            const error = err as Error;
+
             res.json(
                 new ApiResponseModel({
                     data: null,

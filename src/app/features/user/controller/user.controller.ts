@@ -22,7 +22,9 @@ export default class UserController {
                     message: "",
                 })
             );
-        } catch (error) {
+        } catch (err) {
+            const error = err as Error;
+
             res.json(
                 new ApiResponseModel({
                     data: null,
@@ -45,7 +47,9 @@ export default class UserController {
                     message: "User created successfully",
                 })
             );
-        } catch (error) {
+        } catch (err) {
+            const error = err as Error;
+
             res.json(
                 new ApiResponseModel({
                     data: null,
@@ -68,7 +72,9 @@ export default class UserController {
                     message: "User deleted successfully",
                 })
             );
-        } catch (error) {
+        } catch (err) {
+            const error = err as Error;
+
             res.json(
                 new ApiResponseModel({
                     data: null,

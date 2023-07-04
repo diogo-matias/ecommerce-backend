@@ -21,8 +21,8 @@ export default class UserProductsController {
                     message: "Product added to cart",
                 })
             );
-        } catch (error) {
-            console.log(error);
+        } catch (err) {
+            const error = err as Error;
 
             res.json(
                 new ApiResponseModel({
@@ -51,8 +51,8 @@ export default class UserProductsController {
                     message: "Product deleted from cart",
                 })
             );
-        } catch (error) {
-            console.log(error);
+        } catch (err) {
+            const error = err as Error;
 
             res.json(
                 new ApiResponseModel({
