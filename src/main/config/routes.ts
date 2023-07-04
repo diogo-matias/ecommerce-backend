@@ -12,6 +12,10 @@ const routes = {
 export default () => {
     const router = Router();
 
+    router.get("/", (req, res) => {
+        res.send("Server is running...");
+    });
+
     Object.values(routes).map((route) => {
         router.use(route());
     });
