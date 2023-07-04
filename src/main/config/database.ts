@@ -1,3 +1,5 @@
+import * as pg from "pg";
+
 export default {
     dialect: "postgres",
     host: "ep-withered-paper-622628-pooler.us-east-1.postgres.vercel-storage.com",
@@ -11,4 +13,5 @@ export default {
     dialectOptions: {
         ssl: true,
     },
+    dialectModule: pg,
 };
