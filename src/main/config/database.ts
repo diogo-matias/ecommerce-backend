@@ -1,17 +1,21 @@
 import * as pg from "pg";
+import "dotenv/config";
+
+const enviroment = process.env.NODE_ENV;
+const ssl = enviroment === "production" ? true : false;
 
 export default {
     dialect: "postgres",
-    host: "ep-withered-paper-622628-pooler.us-east-1.postgres.vercel-storage.com",
-    username: "default",
-    password: "VdJA0LoxgE3P",
-    database: "verceldb",
+    host: process.env.POSTGRES_HOST,
+    username: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DATABASE,
     define: {
         timestamps: true,
         underscored: true,
     },
     dialectOptions: {
-        ssl: true,
+        ssl,
     },
     dialectModule: pg,
 };
