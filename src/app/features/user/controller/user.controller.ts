@@ -3,6 +3,7 @@ import {
     CreateUserRequestType,
     DeleteUserRequestType,
     GetUserRequestType,
+    LoginRequestType,
 } from "../types";
 import { ApiResponseModel } from "../../../models/api-response";
 
@@ -80,6 +81,31 @@ export default class UserController {
                     data: null,
                     hasError: true,
                     message: "Fail to delete user",
+                    error: error,
+                })
+            );
+        }
+    }
+
+    async login(req: LoginRequestType, res: Response) {
+        try {
+            const data = await repository.login(req.body);
+
+            res.json(
+                new ApiResponseModel({
+                    hasError: false,
+                    data: data,
+                    message: "",
+                })
+            );
+        } catch (err) {
+            const error = err as Error;
+
+            res.json(
+                new ApiResponseModel({
+                    data: null,
+                    hasError: true,
+                    message: "",
                     error: error,
                 })
             );

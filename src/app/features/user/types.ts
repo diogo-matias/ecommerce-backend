@@ -14,6 +14,12 @@ export type DeleteUserPayloadType = {
     id: string;
 };
 
+export type LoginPayloadType = {
+    email: string;
+    password: string;
+};
+
 export type CreateUserRequestType = Request<any, any, CreateUserPayloadType>;
 export type GetUserRequestType = Request<any, GetUserPayloadType, null>;
 export type DeleteUserRequestType = Request<any, DeleteUserPayloadType, null>;
+export type LoginRequestType = Request<any, null, LoginPayloadType>;

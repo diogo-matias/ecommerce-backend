@@ -60,7 +60,7 @@ export class UserProductsMiddleware {
                 new ApiResponseModel({
                     data: null,
                     hasError: true,
-                    message: "tem not found",
+                    message: "item not found",
                 })
             );
         }
