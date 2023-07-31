@@ -38,6 +38,7 @@ export class UserRepository {
             },
             include: {
                 model: Product,
+                // as: "products",
                 through: { attributes: ["quantity"] },
                 attributes: {
                     exclude: ["createdAt", "updatedAt"],

@@ -46,7 +46,7 @@ export class UserProductsMiddleware {
         res: Response,
         next: NextFunction
     ) {
-        const { productId, userId } = req.body;
+        const { productId, userId } = req.params;
 
         const cartItem = await UserProducts.findOne({
             where: {

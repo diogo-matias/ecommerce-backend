@@ -5,27 +5,40 @@ export type CreateUserProductPayloadType = {
     productId: string;
 };
 
+export type GetUserProductsPayloadType = {
+    userId: string;
+};
+
 export type CreateUserProductRequestType = Request<
     any,
     any,
     CreateUserProductPayloadType
 >;
 
-export type DeleteUserProductBodyType = {
+export type GetUserProductsRequestType = Request<GetUserProductsPayloadType>;
+
+export type DeleteUserProductParamsType = {
     userId: string;
     productId: string;
+};
+
+export type DeleteAllUserProductsParamsType = {
+    userId: string;
 };
 
 export type DeleteUserProductQueryType = {
     quantity: "all" | "single";
 };
 
-export type DeleteUserPayloadType = DeleteUserProductBodyType &
+export type DeleteUserPayloadType = DeleteUserProductParamsType &
     DeleteUserProductQueryType;
 
 export type DeleteUserProductRequestType = Request<
+    DeleteUserProductParamsType,
     any,
-    any,
-    DeleteUserProductBodyType,
+    null,
     DeleteUserProductQueryType
 >;
+
+export type DeleteAllUserProductsRequestType =
+    Request<DeleteUserProductParamsType>;

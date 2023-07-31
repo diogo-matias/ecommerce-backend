@@ -6,11 +6,35 @@ import { UserProducts } from "../../../models/user-products";
 import { UserProductsModel } from "../../../models/user-products/types";
 import {
     CreateUserProductPayloadType,
+    DeleteAllUserProductsParamsType,
     DeleteUserPayloadType,
-    DeleteUserProductBodyType,
+    GetUserProductsPayloadType,
 } from "../types";
+import { GetUserPayloadType } from "../../user/types";
 
 export class UserProductsRepository {
+    async getUserProducts(payload: GetUserProductsPayloadType) {
+        const { userId } = payload;
+
+        // const items = (await UserProducts.findAll({
+        //     where: {
+        //         user_id: userId,
+        //     },
+        //     include: [
+        //         {
+        //             model: Product,
+        //             as: "Products",
+        //         },
+        //     ],
+        // })) as any;
+
+        // const items = await UserProducts.findAll({
+        //     include: { model: Product },
+        // });
+
+        // return items;
+    }
+
     async createUserProduct(payload: CreateUserProductPayloadType) {
         const { productId, userId } = payload;
 
@@ -39,6 +63,7 @@ export class UserProductsRepository {
         const { productId, userId, quantity = "single" } = payload;
 
         const user = await User.findByPk(userId);
+        // let cartItem;
 
         if (quantity === "all") {
             // @ts-ignore
@@ -62,5 +87,22 @@ export class UserProductsRepository {
         }
 
         return user;
+    }
+    async deleteAllUserProducts(payload: DeleteAllUserProductsParamsType) {
+        const { userId } = payload;
+
+        const user = await User.findByPk(userId);
+
+        if (!user) {
+            throw "No one";
+        }
+
+        const products = await UserProducts.destroy({
+            where: {
+                user_id: userId,
+            },
+        });
+
+        return products;
     }
 }
