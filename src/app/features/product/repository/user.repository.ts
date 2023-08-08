@@ -1,4 +1,4 @@
-import { Model, Op } from "sequelize";
+import { Op } from "sequelize";
 import { Product } from "../../../models";
 import {
     CreateProductPayloadType,
@@ -83,6 +83,26 @@ export class ProductRepository {
         const response = await Product.create(values);
 
         return response;
+    }
+
+    async createProductList(payload: CreateProductPayloadType[]) {
+        const formattedData = payload.map((item) => {
+            return {
+                id: `${crypto.randomUUID()}`.toString(),
+                ...item,
+            };
+        });
+
+        // const response = await Product.bulkCreate(formattedData, {
+        //     ignoreDuplicates: false,
+        //     returning: true,
+        // });
+
+        const response = formattedData.map(async (item) => {
+            return await Product.create(item);
+        });
+
+        return Promise.all(response);
     }
 
     async deleteProduct(payload: DeleteProductPayloadType) {

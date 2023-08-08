@@ -1,5 +1,6 @@
 import { Response } from "express";
 import {
+    CreateProductListRequestType,
     CreateProductRequestType,
     DeleteProductRequestType,
     EditProductRequestType,
@@ -139,6 +140,30 @@ export default class ProductController {
                     data: null,
                     hasError: true,
                     message: "Fail to create product",
+                    error: error,
+                })
+            );
+        }
+    }
+    async createProductList(req: CreateProductListRequestType, res: Response) {
+        try {
+            const data = await repository.createProductList(req.body);
+
+            res.json(
+                new ApiResponseModel({
+                    hasError: false,
+                    data: data,
+                    message: "Products created successfully",
+                })
+            );
+        } catch (err) {
+            const error = err as Error;
+
+            res.json(
+                new ApiResponseModel({
+                    data: null,
+                    hasError: true,
+                    message: "Fail to create products",
                     error: error,
                 })
             );

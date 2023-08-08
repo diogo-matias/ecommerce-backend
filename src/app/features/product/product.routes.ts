@@ -15,6 +15,8 @@ export default () => {
     routes.put("/products/:id", productController.editProduct);
 
     routes.post("/products", productController.createProduct);
+    routes.post("/products-list", productController.createProductList);
+
     routes.delete("/products/:id", productController.deleteProduct);
 
     return routes;

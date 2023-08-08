@@ -41,6 +41,12 @@ export type CreateProductRequestType = Request<
     CreateProductPayloadType
 >;
 
+export type CreateProductListRequestType = Request<
+    any,
+    any,
+    CreateProductPayloadType[]
+>;
+
 export type DeleteProductRequestType = Request<
     any,
     DeleteProductPayloadType,
